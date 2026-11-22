@@ -87,8 +87,7 @@ public class vehicleRental {
             System.out.println("4. Total Bill");
             System.out.println("5. Exit");
 
-            System.out.print("Enter choice: ");
-            option = sc.nextInt();
+            option = readInt(sc, "Enter choice: ");
 
             switch (option) {
 
@@ -99,8 +98,7 @@ public class vehicleRental {
                 case 2:
                     displayVehicles(vehicles);
 
-                    System.out.print("Choose vehicle (1-5): ");
-                    int choice = sc.nextInt();
+                    int choice = readInt(sc, "Choose vehicle (1-5): ");
 
                     if (choice < 1 || choice > 5) {
                         System.out.println("Invalid choice!");
@@ -114,8 +112,7 @@ public class vehicleRental {
                         break;
                     }
 
-                    System.out.print("Enter rental days: ");
-                    int days = sc.nextInt();
+                    int days = readInt(sc, "Enter rental days: ");
 
                     if (days <= 0) {
                         System.out.println("Invalid days!");
@@ -173,6 +170,19 @@ public class vehicleRental {
                     vehicles[i].brand + " - Rs. " +
                     vehicles[i].pricePerDay + "/day - " +
                     (vehicles[i].available ? "Available" : "Booked"));
+        }
+    }
+
+    static int readInt(Scanner sc, String message) {
+        while (true) {
+            System.out.print(message);
+
+            try {
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                sc.next();
+            }
         }
     }
 }
