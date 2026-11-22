@@ -61,19 +61,37 @@ public class vehicleRental {
         System.out.print("Enter phone number: ");
         customer.phone = sc.nextLine();
 
-        Car c1 = new Car();
-        c1.brand = "Toyota";
-        c1.pricePerDay = 2000;
+        Vehicle[] vehicles = new Vehicle[5];
 
-        Bike b1 = new Bike();
-        b1.brand = "Royal Enfield";
-        b1.pricePerDay = 1000;
+        vehicles[0] = new Car();
+        vehicles[0].brand = "Toyota";
+        vehicles[0].pricePerDay = 2000;
+
+        vehicles[1] = new Car();
+        vehicles[1].brand = "Honda";
+        vehicles[1].pricePerDay = 1800;
+
+        vehicles[2] = new Car();
+        vehicles[2].brand = "Hyundai";
+        vehicles[2].pricePerDay = 1500;
+
+        vehicles[3] = new Bike();
+        vehicles[3].brand = "Royal Enfield";
+        vehicles[3].pricePerDay = 1000;
+
+        vehicles[4] = new Bike();
+        vehicles[4].brand = "KTM";
+        vehicles[4].pricePerDay = 800;
 
         System.out.println("\n===== AVAILABLE VEHICLES =====");
-        System.out.println("1. Car - Toyota");
-        System.out.println("2. Bike - Royal Enfield");
 
-        System.out.print("Choose vehicle (1 or 2): ");
+        for (int i = 0; i < vehicles.length; i++) {
+            System.out.println((i + 1) + ". " +
+                    vehicles[i].brand + " - Rs. " +
+                    vehicles[i].pricePerDay + "/day");
+        }
+
+        System.out.print("\nChoose vehicle (1-5): ");
         int choice = sc.nextInt();
 
         System.out.print("Enter number of rental days: ");
@@ -82,11 +100,8 @@ public class vehicleRental {
         if (days <= 0) {
             System.out.println("Invalid number of days!");
         }
-        else if (choice == 1) {
-            generateBill(customer, c1, days);
-        }
-        else if (choice == 2) {
-            generateBill(customer, b1, days);
+        else if (choice >= 1 && choice <= 5) {
+            generateBill(customer, vehicles[choice - 1], days);
         }
         else {
             System.out.println("Invalid vehicle choice!");
