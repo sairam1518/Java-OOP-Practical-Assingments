@@ -27,8 +27,20 @@ public class StudentManagementSystem {
 
     static ArrayList<Student> students = new ArrayList<>();
 
-    public static void main(String[] args) {
+    static int readInt(Scanner sc, String message) {
+        while (true) {
+            System.out.print(message);
 
+            try {
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                sc.nextLine();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice;
 
@@ -38,15 +50,15 @@ public class StudentManagementSystem {
             System.out.println("2. Display Students");
             System.out.println("3. Search Student");
             System.out.println("4. Exit");
+            System.out.println("5. Update Student");
+            System.out.println("6. Delete Student");
 
-            System.out.print("Enter choice: ");
-            choice = sc.nextInt();
+            choice = readInt(sc, "Enter choice: ");
 
             switch (choice) {
 
                 case 1:
-                    System.out.print("Enter Roll Number: ");
-                    int roll = sc.nextInt();
+                    int roll = readInt(sc, "Enter Roll Number: ");
                     sc.nextLine();
 
                     System.out.print("Enter Name: ");
@@ -55,11 +67,9 @@ public class StudentManagementSystem {
                     System.out.print("Enter Course: ");
                     String course = sc.nextLine();
 
-                    System.out.print("Enter Marks: ");
-                    int marks = sc.nextInt();
+                    int marks = readInt(sc, "Enter Marks: ");
 
                     students.add(new Student(roll, name, course, marks));
-
                     System.out.println("Student Added Successfully!");
                     break;
 
@@ -74,9 +84,7 @@ public class StudentManagementSystem {
                     break;
 
                 case 3:
-                    System.out.print("Enter Roll Number to Search: ");
-                    int search = sc.nextInt();
-
+                    int search = readInt(sc, "Enter Roll Number to Search: ");
                     boolean found = false;
 
                     for (Student s : students) {
@@ -94,6 +102,54 @@ public class StudentManagementSystem {
 
                 case 4:
                     System.out.println("Thank You!");
+                    break;
+
+                case 5:
+                    int updateRoll = readInt(sc, "Enter Roll Number to Update: ");
+                    sc.nextLine();
+                    found = false;
+
+                    for (Student s : students) {
+                        if (s.rollNo == updateRoll) {
+                            System.out.print("Enter New Name: ");
+                            s.name = sc.nextLine();
+
+                            System.out.print("Enter New Course: ");
+                            s.course = sc.nextLine();
+
+                            s.marks = readInt(sc, "Enter New Marks: ");
+
+                            System.out.println("Student Updated Successfully!");
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Student Not Found!");
+                    }
+                    break;
+
+                case 6:
+                    int deleteRoll = readInt(sc, "Enter Roll Number to Delete: ");
+                    found = false;
+
+                    Iterator<Student> iterator = students.iterator();
+
+                    while (iterator.hasNext()) {
+                        Student s = iterator.next();
+
+                        if (s.rollNo == deleteRoll) {
+                            iterator.remove();
+                            System.out.println("Student Deleted Successfully!");
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Student Not Found!");
+                    }
                     break;
 
                 default:
