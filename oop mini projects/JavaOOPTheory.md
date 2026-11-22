@@ -932,3 +932,146 @@ Not eligible to vote
 Exception handling is an important feature of Java used to manage runtime errors. The try, catch, finally, throw and throws keywords help handle exceptions and make programs more reliable.
 
 
+
+
+
+
+# Q20. Explain Java Collections Framework and Its Different Types with Examples.
+
+## Introduction
+The Java Collections Framework is a set of classes and interfaces used to store and manage groups of objects.
+
+It provides different data structures such as List, Set, Queue and Map to organize and process data efficiently.
+
+## Types of Collections
+
+### 1. List
+A List stores elements in an ordered manner and allows duplicate values.
+
+**Example:**
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+
+        names.add("Rahul");
+        names.add("Amit");
+        names.add("Rahul");
+
+        System.out.println(names);
+    }
+}
+```
+
+**Output:**
+```text
+[Rahul, Amit, Rahul]
+```
+
+### 2. Set
+A Set stores unique elements and does not allow duplicate values.
+
+**Example:**
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet<Integer> numbers = new HashSet<>();
+
+        numbers.add(10);
+        numbers.add(20);
+        numbers.add(10);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output:**
+```text
+[20, 10]
+```
+
+Note: HashSet does not guarantee the order of elements.
+
+### 3. Queue
+A Queue generally follows the FIFO (First In, First Out) principle. The element added first is removed first.
+
+**Example:**
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Queue<String> q = new LinkedList<>();
+
+        q.add("Rahul");
+        q.add("Amit");
+        q.add("Priya");
+
+        System.out.println(q);
+        System.out.println("Removed: " + q.remove());
+        System.out.println(q);
+    }
+}
+```
+
+**Output:**
+```text
+[Rahul, Amit, Priya]
+Removed: Rahul
+[Amit, Priya]
+```
+
+### 4. Map
+A Map stores data in key-value pairs. Each key must be unique.
+
+**Example:**
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap<Integer, String> students = new HashMap<>();
+
+        students.put(101, "Rahul");
+        students.put(102, "Amit");
+        students.put(103, "Priya");
+
+        System.out.println(students);
+        System.out.println(students.get(101));
+    }
+}
+```
+
+**Output:**
+```text
+{101=Rahul, 102=Amit, 103=Priya}
+Rahul
+```
+
+## Common Collection Classes
+
+1. **ArrayList:** Stores elements in a dynamic array.
+2. **LinkedList:** Stores elements using linked nodes.
+3. **HashSet:** Stores unique elements without guaranteeing order.
+4. **TreeSet:** Stores unique elements in sorted order.
+5. **HashMap:** Stores data in key-value pairs.
+6. **PriorityQueue:** Processes elements according to priority.
+
+## Advantages of Java Collections Framework
+
+1. Makes data storage and management easier.
+2. Provides ready-made data structures.
+3. Reduces programming effort.
+4. Supports dynamic memory management.
+5. Provides methods for searching, sorting and deleting elements.
+6. Improves code reusability.
+
+## Conclusion
+The Java Collections Framework is an important feature of Java used to store and manage data efficiently. It provides List, Set, Queue and Map interfaces with different implementations. It makes programs easier to develop, maintain and understand.
+
+
