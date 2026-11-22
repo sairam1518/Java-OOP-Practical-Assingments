@@ -19,10 +19,8 @@ abstract class Vehicle implements Rentable {
     }
 
     public void bookVehicle(int days) {
-        if (available) {
-            available = false;
-            System.out.println("Vehicle booked for " + days + " days");
-        }
+        available = false;
+        System.out.println("Vehicle booked for " + days + " days");
     }
 }
 
@@ -52,6 +50,9 @@ class Customer {
 }
 
 public class vehicleRental {
+
+    static String[] history = new String[5];
+    static int bookingCount = 0;
 
     public static void main(String[] args) {
 
@@ -124,6 +125,11 @@ public class vehicleRental {
                     grandTotal += amount;
                     totalBookings++;
 
+                    history[bookingCount] = selected.brand +
+                            " | " + days + " days | Rs. " + amount;
+
+                    bookingCount++;
+
                 } else {
                     System.out.println("Sorry! This vehicle is already booked.");
                 }
@@ -137,9 +143,14 @@ public class vehicleRental {
 
         } while (again.equalsIgnoreCase("yes"));
 
+        System.out.println("\n========== BOOKING HISTORY ==========");
+
+        for (int i = 0; i < bookingCount; i++) {
+            System.out.println((i + 1) + ". " + history[i]);
+        }
+
         System.out.println("\n========== FINAL BILL SUMMARY ==========");
         customer.displayCustomer();
-        System.out.println("----------------------------------------");
         System.out.println("Total Vehicles Booked: " + totalBookings);
         System.out.println("Grand Total: Rs. " + grandTotal);
         System.out.println("========================================");
