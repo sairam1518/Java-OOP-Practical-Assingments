@@ -53,6 +53,7 @@ public class vehicleRental {
 
     static String[] history = new String[5];
     static int bookingCount = 0;
+    static double grandTotal = 0;
 
     public static void main(String[] args) {
 
@@ -88,94 +89,110 @@ public class vehicleRental {
         vehicles[4].brand = "KTM";
         vehicles[4].pricePerDay = 800;
 
-        String again;
-        double grandTotal = 0;
-        int totalBookings = 0;
+        int option;
 
         do {
 
-            System.out.println("\n===== AVAILABLE VEHICLES =====");
+            System.out.println("\n===== VEHICLE RENTAL SYSTEM =====");
+            System.out.println("1. View Available Vehicles");
+            System.out.println("2. Book a Vehicle");
+            System.out.println("3. View Booking History");
+            System.out.println("4. View Total Bill");
+            System.out.println("5. Exit");
 
-            for (int i = 0; i < vehicles.length; i++) {
-                System.out.println((i + 1) + ". " +
-                        vehicles[i].brand + " - Rs. " +
-                        vehicles[i].pricePerDay + "/day - " +
-                        (vehicles[i].available ? "Available" : "Booked"));
-            }
+            System.out.print("Enter your choice: ");
+            option = sc.nextInt();
 
-            System.out.print("\nChoose vehicle (1-5): ");
-            int choice = sc.nextInt();
+            switch (option) {
 
-            System.out.print("Enter number of rental days: ");
-            int days = sc.nextInt();
+                case 1:
+                    displayVehicles(vehicles);
+                    break;
 
-            if (days <= 0) {
-                System.out.println("Invalid number of days!");
-            }
-            else if (choice >= 1 && choice <= 5) {
+                case 2:
+                    displayVehicles(vehicles);
 
-                Vehicle selected = vehicles[choice - 1];
+                    System.out.print("Choose vehicle (1-5): ");
+                    int choice = sc.nextInt();
 
-                if (selected.available) {
+                    if (choice < 1 || choice > 5) {
+                        System.out.println("Invalid vehicle choice!");
+                        break;
+                    }
+
+                    Vehicle selected = vehicles[choice - 1];
+
+                    if (!selected.available) {
+                        System.out.println("Vehicle is already booked!");
+                        break;
+                    }
+
+                    System.out.print("Enter rental days: ");
+                    int days = sc.nextInt();
+
+                    if (days <= 0) {
+                        System.out.println("Invalid number of days!");
+                        break;
+                    }
 
                     double amount = selected.calculateRent(days);
 
-                    generateBill(customer, selected, days);
+                    selected.bookVehicle(days);
 
                     grandTotal += amount;
-                    totalBookings++;
 
                     history[bookingCount] = selected.brand +
                             " | " + days + " days | Rs. " + amount;
 
                     bookingCount++;
 
-                } else {
-                    System.out.println("Sorry! This vehicle is already booked.");
-                }
+                    System.out.println("\nBooking successful!");
+                    System.out.println("Rental Amount: Rs. " + amount);
+                    break;
+
+                case 3:
+                    System.out.println("\n===== BOOKING HISTORY =====");
+
+                    if (bookingCount == 0) {
+                        System.out.println("No bookings yet.");
+                    } else {
+                        for (int i = 0; i < bookingCount; i++) {
+                            System.out.println((i + 1) + ". " + history[i]);
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("\n===== TOTAL BILL =====");
+                    customer.displayCustomer();
+                    System.out.println("Total Vehicles Booked: " + bookingCount);
+                    System.out.println("Grand Total: Rs. " + grandTotal);
+                    break;
+
+                case 5:
+                    System.out.println("Thank you for using our system!");
+                    break;
+
+                default:
+                    System.out.println("Invalid menu choice!");
             }
-            else {
-                System.out.println("Invalid vehicle choice!");
-            }
 
-            System.out.print("\nDo you want to book another vehicle? (yes/no): ");
-            again = sc.next();
-
-        } while (again.equalsIgnoreCase("yes"));
-
-        System.out.println("\n========== BOOKING HISTORY ==========");
-
-        for (int i = 0; i < bookingCount; i++) {
-            System.out.println((i + 1) + ". " + history[i]);
-        }
-
-        System.out.println("\n========== FINAL BILL SUMMARY ==========");
-        customer.displayCustomer();
-        System.out.println("Total Vehicles Booked: " + totalBookings);
-        System.out.println("Grand Total: Rs. " + grandTotal);
-        System.out.println("========================================");
-        System.out.println("Thank you for using our rental system!");
+        } while (option != 5);
 
         sc.close();
     }
 
-    static void generateBill(Customer customer, Vehicle vehicle, int days) {
+    static void displayVehicles(Vehicle[] vehicles) {
 
-        double total = vehicle.calculateRent(days);
-        double baseRent = vehicle.pricePerDay * days;
-        double extraCharge = total - baseRent;
+        System.out.println("\n===== VEHICLE LIST =====");
 
-        vehicle.bookVehicle(days);
+        for (int i = 0; i < vehicles.length; i++) {
 
-        System.out.println("\n========== BOOKING RECEIPT ==========");
-        customer.displayCustomer();
-        System.out.println("-------------------------------------");
-        vehicle.displayDetails();
-        System.out.println("Rental Days: " + days);
-        System.out.println("Base Rent: Rs. " + baseRent);
-        System.out.println("Additional Charges: Rs. " + extraCharge);
-        System.out.println("-------------------------------------");
-        System.out.println("FINAL AMOUNT: Rs. " + total);
-        System.out.println("=====================================");
+            System.out.println((i + 1) + ". " +
+                    vehicles[i].brand +
+                    " - Rs. " + vehicles[i].pricePerDay +
+                    "/day - " +
+                    (vehicles[i].available ? "Available" : "Booked"));
+        }
     }
 }
