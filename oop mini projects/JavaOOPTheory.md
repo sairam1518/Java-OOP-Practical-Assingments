@@ -717,3 +717,114 @@ Access modifiers are important in Java because they control the visibility of cl
 ```
 
 
+
+
+
+# Q18. Explain the static and final Keywords in Java with Examples.
+
+## Introduction
+The `static` and `final` keywords are important features of Java. They are used to control how variables, methods and classes behave.
+
+## 1. static Keyword
+
+The `static` keyword is used to create class-level variables and methods. Static members belong to the class rather than individual objects.
+
+### Example:
+```java
+class Student {
+    int rollNo;
+    String name;
+    static String college = "MIT-WPU";
+
+    Student(int r, String n) {
+        rollNo = r;
+        name = n;
+    }
+
+    void display() {
+        System.out.println(rollNo + " " + name + " " + college);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student(101, "Rahul");
+        Student s2 = new Student(102, "Amit");
+
+        s1.display();
+        s2.display();
+    }
+}
+```
+
+### Uses of static Keyword
+1. Creates variables shared by all objects.
+2. Creates methods that can be called without creating an object.
+3. Saves memory when common data is shared.
+4. Can be used to create static blocks.
+
+## 2. final Keyword
+
+The `final` keyword is used to restrict changes in Java. It can be applied to variables, methods and classes.
+
+### Example:
+```java
+class Student {
+    final int MAX_MARKS = 100;
+
+    void display() {
+        System.out.println("Maximum Marks: " + MAX_MARKS);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}
+```
+
+### Uses of final Keyword
+
+1. **Final Variable:** Its value cannot be changed after initialization.
+2. **Final Method:** It cannot be overridden by a child class.
+3. **Final Class:** It cannot be inherited by another class.
+
+### Example of Final Class
+```java
+final class Animal {
+    void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.sound();
+    }
+}
+```
+
+## Difference Between static and final
+
+| static Keyword | final Keyword |
+|---|---|
+| Belongs to the class. | Restricts modification or inheritance. |
+| Can be used with variables and methods. | Can be used with variables, methods and classes. |
+| Static variables are shared among objects. | Final variables cannot be reassigned after initialization. |
+| Static methods can be called using the class name. | Final methods cannot be overridden. |
+
+## Advantages
+1. Static members help share common data.
+2. Static methods can be called without creating objects.
+3. Final variables prevent unwanted changes.
+4. Final methods prevent method overriding.
+5. Final classes prevent inheritance.
+
+## Conclusion
+The `static` keyword is used for class-level members, while the `final` keyword is used to restrict changes. Both keywords help improve the organization, security and reliability of Java programs.
+```
+
+
