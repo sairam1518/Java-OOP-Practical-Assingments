@@ -9,6 +9,7 @@ abstract class Vehicle implements Rentable {
 
     String brand;
     double pricePerDay;
+    boolean available = true;
 
     abstract double calculateRent(int days);
 
@@ -18,7 +19,12 @@ abstract class Vehicle implements Rentable {
     }
 
     public void bookVehicle(int days) {
-        System.out.println("Vehicle booked for " + days + " days");
+        if (available) {
+            available = false;
+            System.out.println("Vehicle booked for " + days + " days");
+        } else {
+            System.out.println("Vehicle is not available!");
+        }
     }
 }
 
@@ -88,7 +94,8 @@ public class vehicleRental {
         for (int i = 0; i < vehicles.length; i++) {
             System.out.println((i + 1) + ". " +
                     vehicles[i].brand + " - Rs. " +
-                    vehicles[i].pricePerDay + "/day");
+                    vehicles[i].pricePerDay + "/day - " +
+                    (vehicles[i].available ? "Available" : "Booked"));
         }
 
         System.out.print("\nChoose vehicle (1-5): ");
@@ -101,7 +108,14 @@ public class vehicleRental {
             System.out.println("Invalid number of days!");
         }
         else if (choice >= 1 && choice <= 5) {
-            generateBill(customer, vehicles[choice - 1], days);
+
+            Vehicle selected = vehicles[choice - 1];
+
+            if (selected.available) {
+                generateBill(customer, selected, days);
+            } else {
+                System.out.println("Sorry! This vehicle is already booked.");
+            }
         }
         else {
             System.out.println("Invalid vehicle choice!");
