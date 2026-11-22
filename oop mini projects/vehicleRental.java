@@ -10,7 +10,29 @@ class Vehicle {
     }
 }
 
-public class VehicleRental {
+// Child class Car
+class Car extends Vehicle {
+
+    int seats;
+
+    void displayCar() {
+        displayDetails();
+        System.out.println("Seats: " + seats);
+    }
+}
+
+// Child class Bike
+class Bike extends Vehicle {
+
+    int engineCC;
+
+    void displayBike() {
+        displayDetails();
+        System.out.println("Engine: " + engineCC + " CC");
+    }
+}
+
+public class vehicleRental {
 
     public static void main(String[] args) {
 
