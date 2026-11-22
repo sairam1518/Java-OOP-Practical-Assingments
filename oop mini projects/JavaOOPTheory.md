@@ -374,4 +374,126 @@ Inheritance allows classes to reuse existing code and establish relationships be
 
 
 
+# Q15. Explain Constructors in Java and Their Different Types with Examples.
+
+## Introduction
+A constructor in Java is a special method used to initialize objects. It is automatically called when an object is created.
+
+A constructor has the same name as the class and does not have a return type.
+
+## Types of Constructors
+
+### 1. Default Constructor
+A default constructor is automatically provided by Java if no constructor is defined in the class.
+
+**Example:**
+```java
+class Student {
+    int rollNo;
+    String name;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        System.out.println("Object created successfully");
+    }
+}
+```
+
+### 2. No-Argument Constructor
+A no-argument constructor is a constructor created by the programmer that does not accept any parameters.
+
+**Example:**
+```java
+class Student {
+    Student() {
+        System.out.println("Student object created");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+    }
+}
+```
+
+### 3. Parameterized Constructor
+A parameterized constructor accepts values as parameters to initialize an object.
+
+**Example:**
+```java
+class Student {
+    int rollNo;
+    String name;
+
+    Student(int r, String n) {
+        rollNo = r;
+        name = n;
+    }
+
+    void display() {
+        System.out.println(rollNo + " " + name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student(101, "Rahul");
+        s.display();
+    }
+}
+```
+
+### 4. Copy Constructor
+Java does not provide a built-in copy constructor, but we can create one manually to copy the values of one object into another.
+
+**Example:**
+```java
+class Student {
+    int rollNo;
+    String name;
+
+    Student(int r, String n) {
+        rollNo = r;
+        name = n;
+    }
+
+    Student(Student s) {
+        rollNo = s.rollNo;
+        name = s.name;
+    }
+
+    void display() {
+        System.out.println(rollNo + " " + name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student(101, "Rahul");
+        Student s2 = new Student(s1);
+
+        s2.display();
+    }
+}
+```
+
+## Features of Constructors
+1. A constructor has the same name as its class.
+2. It does not have a return type.
+3. It is called automatically when an object is created.
+4. Constructors can be overloaded.
+5. Constructors are used to initialize object data.
+
+## Advantages of Constructors
+1. They initialize objects automatically.
+2. They reduce repeated initialization code.
+3. They make programs easier to understand.
+4. They support constructor overloading.
+
+## Conclusion
+Constructors are an important feature of Java used to initialize objects. Java supports default, no-argument and parameterized constructors. A copy constructor can also be created manually to copy object values.
+
 
