@@ -602,3 +602,118 @@ The `this` and `super` keywords are important in Java. The `this` keyword refers
 ```
 
 
+
+
+
+# Q17. Explain Access Modifiers in Java with Examples.
+
+## Introduction
+Access modifiers in Java are keywords used to control the visibility and accessibility of classes, methods, variables and constructors.
+
+Java provides four types of access modifiers.
+
+## Types of Access Modifiers
+
+### 1. Public
+The `public` modifier allows a variable, method or class to be accessed from anywhere in the program.
+
+**Example:**
+```java
+class Student {
+    public String name = "Rahul";
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        System.out.println(s.name);
+    }
+}
+```
+
+### 2. Private
+The `private` modifier allows access only within the same class. It is commonly used in encapsulation.
+
+**Example:**
+```java
+class Student {
+    private int marks = 90;
+
+    public void display() {
+        System.out.println(marks);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}
+```
+
+### 3. Protected
+The `protected` modifier allows access within the same package and also in subclasses in other packages.
+
+**Example:**
+```java
+class Animal {
+    protected void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+class Dog extends Animal {
+    void display() {
+        sound();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.display();
+    }
+}
+```
+
+### 4. Default
+When no access modifier is specified, Java uses default access. It allows access only within the same package.
+
+**Example:**
+```java
+class Student {
+    void display() {
+        System.out.println("Default access modifier");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}
+```
+
+## Difference Between Access Modifiers
+
+| Modifier | Same Class | Same Package | Subclass in Other Package | Other Package |
+|---|---|---|---|---|
+| Public | Yes | Yes | Yes | Yes |
+| Private | Yes | No | No | No |
+| Protected | Yes | Yes | Yes | No |
+| Default | Yes | Yes | No | No |
+
+## Advantages of Access Modifiers
+1. Provide data security.
+2. Control access to class members.
+3. Support encapsulation.
+4. Improve code organization.
+5. Prevent unauthorized access to data.
+
+## Conclusion
+Access modifiers are important in Java because they control the visibility of class members. The four access modifiers are public, private, protected and default. They help make programs secure, organized and easy to maintain.
+```
+
+
