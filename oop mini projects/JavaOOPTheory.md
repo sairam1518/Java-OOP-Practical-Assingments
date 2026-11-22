@@ -497,3 +497,108 @@ public class Main {
 Constructors are an important feature of Java used to initialize objects. Java supports default, no-argument and parameterized constructors. A copy constructor can also be created manually to copy object values.
 
 
+
+
+
+
+# Q16. Explain the `this` and `super` Keywords in Java with Examples.
+
+## Introduction
+In Java, `this` and `super` are special keywords used to refer to objects and their members.
+
+- `this` refers to the current class object.
+- `super` refers to the immediate parent class object.
+
+## 1. this Keyword
+
+The `this` keyword refers to the current object of a class. It is mainly used to access current class variables, methods and constructors.
+
+### Example:
+```java
+class Student {
+    int rollNo;
+    String name;
+
+    Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+
+    void display() {
+        System.out.println("Roll No: " + this.rollNo);
+        System.out.println("Name: " + this.name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student(101, "Rahul");
+        s.display();
+    }
+}
+```
+
+### Uses of this Keyword
+1. Refers to the current class object.
+2. Differentiates instance variables from local variables.
+3. Calls another constructor of the same class using `this()`.
+4. Calls current class methods.
+
+## 2. super Keyword
+
+The `super` keyword refers to the immediate parent class object. It is used to access parent class variables, methods and constructors.
+
+### Example:
+```java
+class Animal {
+    String name = "Animal";
+
+    void sound() {
+        System.out.println("Animals make sounds");
+    }
+}
+
+class Dog extends Animal {
+    String name = "Dog";
+
+    void display() {
+        System.out.println(super.name);
+        super.sound();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.display();
+    }
+}
+```
+
+### Uses of super Keyword
+1. Accesses parent class variables.
+2. Calls parent class methods.
+3. Calls the parent class constructor using `super()`.
+4. Helps avoid confusion between parent and child class members.
+
+## Difference Between this and super
+
+| this Keyword | super Keyword |
+|---|---|
+| Refers to the current class object. | Refers to the immediate parent class object. |
+| Accesses current class variables. | Accesses parent class variables. |
+| Calls current class methods. | Calls parent class methods. |
+| Uses `this()` to call another constructor in the same class. | Uses `super()` to call the parent class constructor. |
+| Used within the current class. | Used in a child class. |
+
+## Advantages
+1. Helps access variables and methods clearly.
+2. Reduces confusion between parent and child class members.
+3. Supports inheritance.
+4. Makes constructors easier to manage.
+
+## Conclusion
+The `this` and `super` keywords are important in Java. The `this` keyword refers to the current object, whereas `super` refers to the immediate parent class object. Both are useful for accessing variables, methods and constructors.
+```
+
+
