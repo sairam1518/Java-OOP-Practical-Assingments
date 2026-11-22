@@ -88,6 +88,8 @@ public class vehicleRental {
         vehicles[4].pricePerDay = 800;
 
         String again;
+        double grandTotal = 0;
+        int totalBookings = 0;
 
         do {
 
@@ -114,7 +116,14 @@ public class vehicleRental {
                 Vehicle selected = vehicles[choice - 1];
 
                 if (selected.available) {
+
+                    double amount = selected.calculateRent(days);
+
                     generateBill(customer, selected, days);
+
+                    grandTotal += amount;
+                    totalBookings++;
+
                 } else {
                     System.out.println("Sorry! This vehicle is already booked.");
                 }
@@ -128,7 +137,13 @@ public class vehicleRental {
 
         } while (again.equalsIgnoreCase("yes"));
 
-        System.out.println("\nThank you for using our rental system!");
+        System.out.println("\n========== FINAL BILL SUMMARY ==========");
+        customer.displayCustomer();
+        System.out.println("----------------------------------------");
+        System.out.println("Total Vehicles Booked: " + totalBookings);
+        System.out.println("Grand Total: Rs. " + grandTotal);
+        System.out.println("========================================");
+        System.out.println("Thank you for using our rental system!");
 
         sc.close();
     }
