@@ -25,8 +25,6 @@ abstract class Vehicle implements Rentable {
 
 class Car extends Vehicle {
 
-    int seats;
-
     double calculateRent(int days) {
         return (pricePerDay * days) + 500;
     }
@@ -34,14 +32,11 @@ class Car extends Vehicle {
 
 class Bike extends Vehicle {
 
-    int engineCC;
-
     double calculateRent(int days) {
         return (pricePerDay * days) + 100;
     }
 }
 
-// Customer class
 class Customer {
 
     String name;
@@ -57,10 +52,18 @@ public class vehicleRental {
 
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+
         Customer customer = new Customer();
 
-        customer.name = "Sairam";
-        customer.phone = "9876543210";
+        System.out.print("Enter customer name: ");
+        customer.name = sc.nextLine();
+
+        System.out.print("Enter phone number: ");
+        customer.phone = sc.nextLine();
+
+        System.out.println("\n===== CUSTOMER DETAILS =====");
+        customer.displayCustomer();
 
         Car c1 = new Car();
         c1.brand = "Toyota";
@@ -70,19 +73,31 @@ public class vehicleRental {
         b1.brand = "Royal Enfield";
         b1.pricePerDay = 1000;
 
-        System.out.println("===== CUSTOMER DETAILS =====");
-        customer.displayCustomer();
+        System.out.println("\n===== VEHICLE RENTAL =====");
+        System.out.println("1. Car - Toyota");
+        System.out.println("2. Bike - Royal Enfield");
 
-        System.out.println();
+        System.out.print("Choose vehicle (1 or 2): ");
+        int choice = sc.nextInt();
 
-        System.out.println("===== CAR BOOKING =====");
-        c1.displayDetails();
-        c1.bookVehicle(3);
+        System.out.print("Enter number of rental days: ");
+        int days = sc.nextInt();
 
-        System.out.println();
+        if (days <= 0) {
+            System.out.println("Invalid number of days!");
+        }
+        else if (choice == 1) {
+            c1.displayDetails();
+            c1.bookVehicle(days);
+        }
+        else if (choice == 2) {
+            b1.displayDetails();
+            b1.bookVehicle(days);
+        }
+        else {
+            System.out.println("Invalid vehicle choice!");
+        }
 
-        System.out.println("===== BIKE BOOKING =====");
-        b1.displayDetails();
-        b1.bookVehicle(3);
+        sc.close();
     }
 }
