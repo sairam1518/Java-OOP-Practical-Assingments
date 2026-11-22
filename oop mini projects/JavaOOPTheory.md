@@ -620,14 +620,14 @@ The `public` modifier allows a variable, method or class to be accessed from any
 **Example:**
 ```java
 class Student {
-    public String name = "Rahul";
+public String name = "Rahul";
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Student s = new Student();
-        System.out.println(s.name);
-    }
+public static void main(String[] args) {
+    Student s = new Student();
+    System.out.println(s.name);
+}
 }
 ```
 
@@ -637,18 +637,18 @@ The `private` modifier allows access only within the same class. It is commonly 
 **Example:**
 ```java
 class Student {
-    private int marks = 90;
+private int marks = 90;
 
-    public void display() {
-        System.out.println(marks);
-    }
+public void display() {
+    System.out.println(marks);
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Student s = new Student();
-        s.display();
-    }
+public static void main(String[] args) {
+    Student s = new Student();
+    s.display();
+}
 }
 ```
 
@@ -658,22 +658,22 @@ The `protected` modifier allows access within the same package and also in subcl
 **Example:**
 ```java
 class Animal {
-    protected void sound() {
-        System.out.println("Animal makes sound");
-    }
+protected void sound() {
+    System.out.println("Animal makes sound");
+}
 }
 
 class Dog extends Animal {
-    void display() {
-        sound();
-    }
+void display() {
+    sound();
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Dog d = new Dog();
-        d.display();
-    }
+public static void main(String[] args) {
+    Dog d = new Dog();
+    d.display();
+}
 }
 ```
 
@@ -683,16 +683,16 @@ When no access modifier is specified, Java uses default access. It allows access
 **Example:**
 ```java
 class Student {
-    void display() {
-        System.out.println("Default access modifier");
-    }
+void display() {
+    System.out.println("Default access modifier");
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Student s = new Student();
-        s.display();
-    }
+public static void main(String[] args) {
+    Student s = new Student();
+    s.display();
+}
 }
 ```
 
@@ -732,28 +732,28 @@ The `static` keyword is used to create class-level variables and methods. Static
 ### Example:
 ```java
 class Student {
-    int rollNo;
-    String name;
-    static String college = "MIT-WPU";
+int rollNo;
+String name;
+static String college = "MIT-WPU";
 
-    Student(int r, String n) {
-        rollNo = r;
-        name = n;
-    }
+Student(int r, String n) {
+    rollNo = r;
+    name = n;
+}
 
-    void display() {
-        System.out.println(rollNo + " " + name + " " + college);
-    }
+void display() {
+    System.out.println(rollNo + " " + name + " " + college);
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Student s1 = new Student(101, "Rahul");
-        Student s2 = new Student(102, "Amit");
+public static void main(String[] args) {
+    Student s1 = new Student(101, "Rahul");
+    Student s2 = new Student(102, "Amit");
 
-        s1.display();
-        s2.display();
-    }
+    s1.display();
+    s2.display();
+}
 }
 ```
 
@@ -770,18 +770,18 @@ The `final` keyword is used to restrict changes in Java. It can be applied to va
 ### Example:
 ```java
 class Student {
-    final int MAX_MARKS = 100;
+final int MAX_MARKS = 100;
 
-    void display() {
-        System.out.println("Maximum Marks: " + MAX_MARKS);
-    }
+void display() {
+    System.out.println("Maximum Marks: " + MAX_MARKS);
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Student s = new Student();
-        s.display();
-    }
+public static void main(String[] args) {
+    Student s = new Student();
+    s.display();
+}
 }
 ```
 
@@ -794,16 +794,16 @@ public class Main {
 ### Example of Final Class
 ```java
 final class Animal {
-    void sound() {
-        System.out.println("Animal makes sound");
-    }
+void sound() {
+    System.out.println("Animal makes sound");
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Animal a = new Animal();
-        a.sound();
-    }
+public static void main(String[] args) {
+    Animal a = new Animal();
+    a.sound();
+}
 }
 ```
 
@@ -866,21 +866,21 @@ The `throws` keyword declares exceptions that a method may pass to its caller.
 
 ```java
 public class Main {
-    public static void main(String[] args) {
-        try {
-            int a = 10;
-            int b = 0;
-            int result = a / b;
+public static void main(String[] args) {
+    try {
+        int a = 10;
+        int b = 0;
+        int result = a / b;
 
-            System.out.println(result);
-        }
-        catch (ArithmeticException e) {
-            System.out.println("Cannot divide by zero");
-        }
-        finally {
-            System.out.println("Program completed");
-        }
+        System.out.println(result);
     }
+    catch (ArithmeticException e) {
+        System.out.println("Cannot divide by zero");
+    }
+    finally {
+        System.out.println("Program completed");
+    }
+}
 }
 ```
 
@@ -894,24 +894,24 @@ Program completed
 
 ```java
 class Voting {
-    static void checkAge(int age) throws Exception {
-        if (age < 18) {
-            throw new Exception("Not eligible to vote");
-        }
-
-        System.out.println("Eligible to vote");
+static void checkAge(int age) throws Exception {
+    if (age < 18) {
+        throw new Exception("Not eligible to vote");
     }
+
+    System.out.println("Eligible to vote");
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
-        try {
-            Voting.checkAge(16);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+public static void main(String[] args) {
+    try {
+        Voting.checkAge(16);
     }
+    catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+}
 }
 ```
 
@@ -953,15 +953,15 @@ A List stores elements in an ordered manner and allows duplicate values.
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        ArrayList<String> names = new ArrayList<>();
+public static void main(String[] args) {
+    ArrayList<String> names = new ArrayList<>();
 
-        names.add("Rahul");
-        names.add("Amit");
-        names.add("Rahul");
+    names.add("Rahul");
+    names.add("Amit");
+    names.add("Rahul");
 
-        System.out.println(names);
-    }
+    System.out.println(names);
+}
 }
 ```
 
@@ -978,15 +978,15 @@ A Set stores unique elements and does not allow duplicate values.
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        HashSet<Integer> numbers = new HashSet<>();
+public static void main(String[] args) {
+    HashSet<Integer> numbers = new HashSet<>();
 
-        numbers.add(10);
-        numbers.add(20);
-        numbers.add(10);
+    numbers.add(10);
+    numbers.add(20);
+    numbers.add(10);
 
-        System.out.println(numbers);
-    }
+    System.out.println(numbers);
+}
 }
 ```
 
@@ -1005,17 +1005,17 @@ A Queue generally follows the FIFO (First In, First Out) principle. The element 
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Queue<String> q = new LinkedList<>();
+public static void main(String[] args) {
+    Queue<String> q = new LinkedList<>();
 
-        q.add("Rahul");
-        q.add("Amit");
-        q.add("Priya");
+    q.add("Rahul");
+    q.add("Amit");
+    q.add("Priya");
 
-        System.out.println(q);
-        System.out.println("Removed: " + q.remove());
-        System.out.println(q);
-    }
+    System.out.println(q);
+    System.out.println("Removed: " + q.remove());
+    System.out.println(q);
+}
 }
 ```
 
@@ -1034,16 +1034,16 @@ A Map stores data in key-value pairs. Each key must be unique.
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        HashMap<Integer, String> students = new HashMap<>();
+public static void main(String[] args) {
+    HashMap<Integer, String> students = new HashMap<>();
 
-        students.put(101, "Rahul");
-        students.put(102, "Amit");
-        students.put(103, "Priya");
+    students.put(101, "Rahul");
+    students.put(102, "Amit");
+    students.put(103, "Priya");
 
-        System.out.println(students);
-        System.out.println(students.get(101));
-    }
+    System.out.println(students);
+    System.out.println(students.get(101));
+}
 }
 ```
 
