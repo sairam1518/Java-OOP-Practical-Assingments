@@ -22,8 +22,6 @@ abstract class Vehicle implements Rentable {
         if (available) {
             available = false;
             System.out.println("Vehicle booked for " + days + " days");
-        } else {
-            System.out.println("Vehicle is not available!");
         }
     }
 }
@@ -89,37 +87,48 @@ public class vehicleRental {
         vehicles[4].brand = "KTM";
         vehicles[4].pricePerDay = 800;
 
-        System.out.println("\n===== AVAILABLE VEHICLES =====");
+        String again;
 
-        for (int i = 0; i < vehicles.length; i++) {
-            System.out.println((i + 1) + ". " +
-                    vehicles[i].brand + " - Rs. " +
-                    vehicles[i].pricePerDay + "/day - " +
-                    (vehicles[i].available ? "Available" : "Booked"));
-        }
+        do {
 
-        System.out.print("\nChoose vehicle (1-5): ");
-        int choice = sc.nextInt();
+            System.out.println("\n===== AVAILABLE VEHICLES =====");
 
-        System.out.print("Enter number of rental days: ");
-        int days = sc.nextInt();
-
-        if (days <= 0) {
-            System.out.println("Invalid number of days!");
-        }
-        else if (choice >= 1 && choice <= 5) {
-
-            Vehicle selected = vehicles[choice - 1];
-
-            if (selected.available) {
-                generateBill(customer, selected, days);
-            } else {
-                System.out.println("Sorry! This vehicle is already booked.");
+            for (int i = 0; i < vehicles.length; i++) {
+                System.out.println((i + 1) + ". " +
+                        vehicles[i].brand + " - Rs. " +
+                        vehicles[i].pricePerDay + "/day - " +
+                        (vehicles[i].available ? "Available" : "Booked"));
             }
-        }
-        else {
-            System.out.println("Invalid vehicle choice!");
-        }
+
+            System.out.print("\nChoose vehicle (1-5): ");
+            int choice = sc.nextInt();
+
+            System.out.print("Enter number of rental days: ");
+            int days = sc.nextInt();
+
+            if (days <= 0) {
+                System.out.println("Invalid number of days!");
+            }
+            else if (choice >= 1 && choice <= 5) {
+
+                Vehicle selected = vehicles[choice - 1];
+
+                if (selected.available) {
+                    generateBill(customer, selected, days);
+                } else {
+                    System.out.println("Sorry! This vehicle is already booked.");
+                }
+            }
+            else {
+                System.out.println("Invalid vehicle choice!");
+            }
+
+            System.out.print("\nDo you want to book another vehicle? (yes/no): ");
+            again = sc.next();
+
+        } while (again.equalsIgnoreCase("yes"));
+
+        System.out.println("\nThank you for using our rental system!");
 
         sc.close();
     }
@@ -142,6 +151,5 @@ public class vehicleRental {
         System.out.println("-------------------------------------");
         System.out.println("FINAL AMOUNT: Rs. " + total);
         System.out.println("=====================================");
-        System.out.println("Thank you for choosing our service!");
     }
 }
