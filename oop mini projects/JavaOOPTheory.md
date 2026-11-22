@@ -828,3 +828,107 @@ The `static` keyword is used for class-level members, while the `final` keyword 
 ```
 
 
+
+
+
+
+# Q19. Explain Exception Handling in Java with Examples.
+
+## Introduction
+Exception handling in Java is a mechanism used to handle runtime errors so that the normal flow of the program does not stop unexpectedly.
+
+An exception is an unwanted event that occurs during program execution.
+
+## Types of Exceptions
+
+1. **Checked Exceptions:** These are checked at compile time. Example: IOException.
+2. **Unchecked Exceptions:** These occur at runtime. Example: ArithmeticException and NullPointerException.
+3. **Errors:** Serious problems that usually cannot be handled by normal application code. Example: OutOfMemoryError.
+
+## Keywords Used in Exception Handling
+
+### 1. try
+The `try` block contains code that may generate an exception.
+
+### 2. catch
+The `catch` block handles the exception generated in the try block.
+
+### 3. finally
+The `finally` block executes whether an exception occurs or not. It is commonly used for cleanup operations.
+
+### 4. throw
+The `throw` keyword is used to explicitly throw an exception.
+
+### 5. throws
+The `throws` keyword declares exceptions that a method may pass to its caller.
+
+## Example of Exception Handling
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int a = 10;
+            int b = 0;
+            int result = a / b;
+
+            System.out.println(result);
+        }
+        catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        }
+        finally {
+            System.out.println("Program completed");
+        }
+    }
+}
+```
+
+**Output:**
+```text
+Cannot divide by zero
+Program completed
+```
+
+## Example of throw and throws
+
+```java
+class Voting {
+    static void checkAge(int age) throws Exception {
+        if (age < 18) {
+            throw new Exception("Not eligible to vote");
+        }
+
+        System.out.println("Eligible to vote");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            Voting.checkAge(16);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+
+**Output:**
+```text
+Not eligible to vote
+```
+
+## Advantages of Exception Handling
+
+1. Prevents sudden program termination in handled cases.
+2. Maintains the normal flow of a program.
+3. Makes debugging easier.
+4. Separates error-handling code from normal code.
+5. Improves program reliability.
+
+## Conclusion
+Exception handling is an important feature of Java used to manage runtime errors. The try, catch, finally, throw and throws keywords help handle exceptions and make programs more reliable.
+
+
