@@ -1,5 +1,10 @@
 
-abstract class Vehicle {
+interface Rentable {
+
+    void bookVehicle(int days);
+}
+
+abstract class Vehicle implements Rentable {
 
     String brand;
     double pricePerDay;
@@ -9,6 +14,11 @@ abstract class Vehicle {
     void displayDetails() {
         System.out.println("Brand: " + brand);
         System.out.println("Price per day: Rs. " + pricePerDay);
+    }
+
+    public void bookVehicle(int days) {
+        System.out.println("Vehicle booked for " + days + " days");
+        System.out.println("Total rent: Rs. " + calculateRent(days));
     }
 }
 
@@ -46,14 +56,14 @@ public class vehicleRental {
         b1.pricePerDay = 1000;
         b1.engineCC = 350;
 
-        System.out.println("----- CAR RENTAL -----");
+        System.out.println("----- CAR BOOKING -----");
         c1.displayDetails();
-        System.out.println("Total rent: Rs. " + c1.calculateRent(3));
+        c1.bookVehicle(3);
 
         System.out.println();
 
-        System.out.println("----- BIKE RENTAL -----");
+        System.out.println("----- BIKE BOOKING -----");
         b1.displayDetails();
-        System.out.println("Total rent: Rs. " + b1.calculateRent(3));
+        b1.bookVehicle(3);
     }
 }
