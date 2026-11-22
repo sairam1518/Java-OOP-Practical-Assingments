@@ -1,20 +1,17 @@
 
-class Vehicle {
+abstract class Vehicle {
 
     String brand;
     double pricePerDay;
+
+    abstract double calculateRent(int days);
 
     void displayDetails() {
         System.out.println("Brand: " + brand);
         System.out.println("Price per day: Rs. " + pricePerDay);
     }
-
-    double calculateRent(int days) {
-        return pricePerDay * days;
-    }
 }
 
-// Car inherits Vehicle
 class Car extends Vehicle {
 
     int seats;
@@ -25,7 +22,6 @@ class Car extends Vehicle {
     }
 }
 
-// Bike inherits Vehicle
 class Bike extends Vehicle {
 
     int engineCC;
@@ -52,12 +48,12 @@ public class vehicleRental {
 
         System.out.println("----- CAR RENTAL -----");
         c1.displayDetails();
-        System.out.println("Total rent for 3 days: Rs. " + c1.calculateRent(3));
+        System.out.println("Total rent: Rs. " + c1.calculateRent(3));
 
         System.out.println();
 
         System.out.println("----- BIKE RENTAL -----");
         b1.displayDetails();
-        System.out.println("Total rent for 3 days: Rs. " + b1.calculateRent(3));
+        System.out.println("Total rent: Rs. " + b1.calculateRent(3));
     }
 }
