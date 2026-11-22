@@ -1,58 +1,46 @@
 
-import java.util.Scanner;
+import java.util.*;
 
 interface Rentable {
     void bookVehicle(int days);
 }
 
 abstract class Vehicle implements Rentable {
-
     String brand;
     double pricePerDay;
     boolean available = true;
 
     abstract double calculateRent(int days);
 
-    void displayDetails() {
-        System.out.println("Brand: " + brand);
-        System.out.println("Price per day: Rs. " + pricePerDay);
-    }
-
     public void bookVehicle(int days) {
         available = false;
-        System.out.println("Vehicle booked for " + days + " days");
     }
 }
 
 class Car extends Vehicle {
-
     double calculateRent(int days) {
         return (pricePerDay * days) + 500;
     }
 }
 
 class Bike extends Vehicle {
-
     double calculateRent(int days) {
         return (pricePerDay * days) + 100;
     }
 }
 
 class Customer {
-
-    String name;
-    String phone;
+    String name, phone;
 
     void displayCustomer() {
-        System.out.println("Customer Name: " + name);
-        System.out.println("Phone Number: " + phone);
+        System.out.println("Customer: " + name);
+        System.out.println("Phone: " + phone);
     }
 }
 
 public class vehicleRental {
 
-    static String[] history = new String[5];
-    static int bookingCount = 0;
+    static ArrayList<String> history = new ArrayList<>();
     static double grandTotal = 0;
 
     public static void main(String[] args) {
@@ -92,15 +80,14 @@ public class vehicleRental {
         int option;
 
         do {
-
             System.out.println("\n===== VEHICLE RENTAL SYSTEM =====");
-            System.out.println("1. View Available Vehicles");
-            System.out.println("2. Book a Vehicle");
-            System.out.println("3. View Booking History");
-            System.out.println("4. View Total Bill");
+            System.out.println("1. View Vehicles");
+            System.out.println("2. Book Vehicle");
+            System.out.println("3. Booking History");
+            System.out.println("4. Total Bill");
             System.out.println("5. Exit");
 
-            System.out.print("Enter your choice: ");
+            System.out.print("Enter choice: ");
             option = sc.nextInt();
 
             switch (option) {
@@ -116,14 +103,14 @@ public class vehicleRental {
                     int choice = sc.nextInt();
 
                     if (choice < 1 || choice > 5) {
-                        System.out.println("Invalid vehicle choice!");
+                        System.out.println("Invalid choice!");
                         break;
                     }
 
                     Vehicle selected = vehicles[choice - 1];
 
                     if (!selected.available) {
-                        System.out.println("Vehicle is already booked!");
+                        System.out.println("Vehicle already booked!");
                         break;
                     }
 
@@ -131,50 +118,46 @@ public class vehicleRental {
                     int days = sc.nextInt();
 
                     if (days <= 0) {
-                        System.out.println("Invalid number of days!");
+                        System.out.println("Invalid days!");
                         break;
                     }
 
                     double amount = selected.calculateRent(days);
-
                     selected.bookVehicle(days);
 
                     grandTotal += amount;
 
-                    history[bookingCount] = selected.brand +
-                            " | " + days + " days | Rs. " + amount;
+                    history.add(selected.brand + " | " +
+                            days + " days | Rs. " + amount);
 
-                    bookingCount++;
-
-                    System.out.println("\nBooking successful!");
-                    System.out.println("Rental Amount: Rs. " + amount);
+                    System.out.println("Booking successful!");
+                    System.out.println("Amount: Rs. " + amount);
                     break;
 
                 case 3:
                     System.out.println("\n===== BOOKING HISTORY =====");
 
-                    if (bookingCount == 0) {
+                    if (history.isEmpty()) {
                         System.out.println("No bookings yet.");
                     } else {
-                        for (int i = 0; i < bookingCount; i++) {
-                            System.out.println((i + 1) + ". " + history[i]);
+                        for (int i = 0; i < history.size(); i++) {
+                            System.out.println((i + 1) + ". " + history.get(i));
                         }
                     }
                     break;
 
                 case 4:
-                    System.out.println("\n===== TOTAL BILL =====");
                     customer.displayCustomer();
-                    System.out.println("Total Vehicles Booked: " + bookingCount);
+                    System.out.println("Total Bookings: " + history.size());
                     System.out.println("Grand Total: Rs. " + grandTotal);
                     break;
 
                 case 5:
-                    System.out.println("Thank you for using our system!");
+                    System.out.println("Thank you!");
                     break;
 
                 default:
-                    System.out.println("Invalid menu choice!");
+                    System.out.println("Invalid option!");
             }
 
         } while (option != 5);
@@ -183,15 +166,12 @@ public class vehicleRental {
     }
 
     static void displayVehicles(Vehicle[] vehicles) {
-
-        System.out.println("\n===== VEHICLE LIST =====");
+        System.out.println("\n===== VEHICLES =====");
 
         for (int i = 0; i < vehicles.length; i++) {
-
             System.out.println((i + 1) + ". " +
-                    vehicles[i].brand +
-                    " - Rs. " + vehicles[i].pricePerDay +
-                    "/day - " +
+                    vehicles[i].brand + " - Rs. " +
+                    vehicles[i].pricePerDay + "/day - " +
                     (vehicles[i].available ? "Available" : "Booked"));
         }
     }
